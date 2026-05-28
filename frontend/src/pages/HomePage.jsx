@@ -195,22 +195,22 @@ const HomePage = () => {
         {/* Hero Section - Auto-shuffling Carousel */}
         <section className="container mx-auto px-4 mt-6 mb-12">
           <div 
-            className="rounded-3xl overflow-hidden relative flex items-center transition-colors duration-700 ease-in-out"
-            style={{ backgroundColor: slide.bgColor, aspectRatio: '21/9', minHeight: '420px', maxHeight: '560px' }}
+            className="rounded-3xl overflow-hidden relative flex flex-col md:flex-row items-stretch transition-colors duration-700 ease-in-out min-h-[500px] sm:min-h-[550px] md:min-h-[420px] md:aspect-[21/9] md:max-h-[560px]"
+            style={{ backgroundColor: slide.bgColor }}
             onMouseEnter={stopAutoSlide}
             onMouseLeave={startAutoSlide}
           >
             {/* Nav Arrows */}
             <button 
               onClick={prevSlide}
-              className="absolute left-6 top-1/2 -translate-y-1/2 w-12 h-12 bg-white/90 backdrop-blur-sm rounded-full flex items-center justify-center shadow-lg text-gray-600 hover:text-primary hover:scale-110 hover:shadow-xl z-20 transition-all duration-300 cursor-pointer"
+              className="hidden md:flex absolute left-6 top-1/2 -translate-y-1/2 w-12 h-12 bg-white/90 backdrop-blur-sm rounded-full items-center justify-center shadow-lg text-gray-600 hover:text-primary hover:scale-110 hover:shadow-xl z-20 transition-all duration-300 cursor-pointer"
               aria-label="Previous slide"
             >
               <FiChevronLeft size={24} />
             </button>
             <button 
               onClick={nextSlide}
-              className="absolute right-6 top-1/2 -translate-y-1/2 w-12 h-12 bg-white/90 backdrop-blur-sm rounded-full flex items-center justify-center shadow-lg text-gray-600 hover:text-primary hover:scale-110 hover:shadow-xl z-20 transition-all duration-300 cursor-pointer"
+              className="hidden md:flex absolute right-6 top-1/2 -translate-y-1/2 w-12 h-12 bg-white/90 backdrop-blur-sm rounded-full items-center justify-center shadow-lg text-gray-600 hover:text-primary hover:scale-110 hover:shadow-xl z-20 transition-all duration-300 cursor-pointer"
               aria-label="Next slide"
             >
               <FiChevronRight size={24} />
@@ -245,9 +245,9 @@ const HomePage = () => {
               </div>
 
               {/* Image Side */}
-              <div className="w-full md:w-1/2 relative min-h-[250px] sm:min-h-[300px] md:min-h-full">
+              <div className="w-full md:w-1/2 relative min-h-[250px] flex-grow sm:min-h-[300px] md:min-h-full order-first md:order-last">
                 {/* Dot Indicators */}
-                <div className="absolute left-1/2 -translate-x-1/2 bottom-8 flex gap-3 z-20">
+                <div className="absolute left-1/2 -translate-x-1/2 bottom-4 md:bottom-8 flex gap-3 z-20">
                   {heroSlides.map((_, i) => (
                     <button 
                       key={i}
@@ -384,16 +384,16 @@ const HomePage = () => {
         <section className="container mx-auto px-4 mb-20">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
             {/* Big Deal Banner */}
-            <div className="bg-gradient-to-br from-[#fff1f4] to-[#ffe4ea] rounded-2xl p-10 flex flex-col justify-center relative overflow-hidden group min-h-[300px] border border-pink-100/60">
-               <div className="relative z-10 max-w-[55%]">
+            <div className="bg-gradient-to-br from-[#fff1f4] to-[#ffe4ea] rounded-2xl p-6 sm:p-10 flex flex-col justify-center relative overflow-hidden group min-h-[300px] sm:min-h-[350px] border border-pink-100/60">
+               <div className="relative z-10 w-[70%] sm:max-w-[55%]">
                  <span className="text-primary text-[10px] font-bold tracking-widest uppercase bg-white/80 backdrop-blur-sm px-3 py-1.5 rounded-full shadow-sm">🔥 Exclusive Offers</span>
-                 <h3 className="text-4xl font-black text-gray-900 mt-5 mb-3 leading-tight">Big Deals<br/>On Top Brands</h3>
-                 <p className="text-gray-600 text-sm mb-6 font-medium leading-relaxed">Save up to 50% on premium products from your favorite brands.</p>
-                 <Link to="/shop" className="inline-flex bg-primary text-white px-5 md:px-7 py-2.5 md:py-3 rounded-xl font-bold text-xs md:text-sm items-center gap-2 hover:bg-[#e60047] transition-all shadow-lg shadow-primary/25 hover:shadow-xl hover:shadow-primary/30 hover:-translate-y-0.5">
+                 <h3 className="text-3xl sm:text-4xl font-black text-gray-900 mt-4 sm:mt-5 mb-2 sm:mb-3 leading-tight">Big Deals<br/>On Top Brands</h3>
+                 <p className="text-gray-600 text-xs sm:text-sm mb-5 sm:mb-6 font-medium leading-relaxed">Save up to 50% on premium products from your favorite brands.</p>
+                 <Link to="/shop" className="inline-flex bg-primary text-white px-5 md:px-7 py-2.5 md:py-3 rounded-xl font-bold text-xs md:text-sm items-center gap-2 hover:bg-[#e60047] transition-all shadow-lg shadow-primary/25 hover:shadow-xl hover:shadow-primary/30 hover:-translate-y-0.5 w-max">
                    Shop Now <FiArrowRight />
                  </Link>
                </div>
-               <div className="absolute right-0 bottom-0 top-0 w-[50%] overflow-hidden flex items-center justify-center">
+               <div className="absolute right-0 bottom-0 top-0 w-[45%] sm:w-[50%] overflow-hidden flex items-center justify-center">
                   <img 
                     src="/banner_big_deals.png" 
                     alt="Big Deals" 
@@ -405,15 +405,15 @@ const HomePage = () => {
 
             {/* Right Banners */}
             <div className="grid grid-rows-2 gap-6">
-              <div className="bg-gradient-to-br from-[#eef2ff] to-[#e0e7ff] rounded-2xl p-8 relative overflow-hidden flex items-center group border border-indigo-100/60">
-                 <div className="relative z-10 w-1/2">
+              <div className="bg-gradient-to-br from-[#eef2ff] to-[#e0e7ff] rounded-2xl p-6 sm:p-8 relative overflow-hidden flex items-center group border border-indigo-100/60 min-h-[160px] sm:min-h-0">
+                 <div className="relative z-10 w-[60%] sm:w-1/2">
                     <span className="text-indigo-600 text-[10px] font-bold uppercase tracking-widest bg-white/70 backdrop-blur-sm px-3 py-1 rounded-full">✨ New Collection</span>
-                    <h3 className="text-2xl font-black text-gray-900 mt-3 mb-4">Fashion 2026</h3>
-                    <Link to="/shop?category=Fashion" className="text-sm font-bold text-gray-900 flex items-center gap-1.5 hover:text-indigo-600 transition group/link">
+                    <h3 className="text-xl sm:text-2xl font-black text-gray-900 mt-3 mb-3 sm:mb-4">Fashion 2026</h3>
+                    <Link to="/shop?category=Fashion" className="text-xs sm:text-sm font-bold text-gray-900 flex items-center gap-1.5 hover:text-indigo-600 transition group/link">
                       Explore Now <FiArrowRight className="group-hover/link:translate-x-1 transition-transform" />
                     </Link>
                  </div>
-                 <div className="absolute right-0 top-0 bottom-0 w-1/2 overflow-hidden">
+                 <div className="absolute right-0 top-0 bottom-0 w-[50%] overflow-hidden">
                    <img 
                      src="/banner_fashion_2026.png" 
                      alt="Fashion 2026 Collection" 

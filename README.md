@@ -1,6 +1,6 @@
 # 🛍️ AuraMart - Modern E-Commerce Platform
 
-![AuraMart Banner](https://images.unsplash.com/photo-1472851294608-062f824d29cc?auto=format&fit=crop&q=80&w=1200&h=400)
+![AuraMart Banner](.github/assets/banner.png)
 
 AuraMart is a full-stack, professional-grade E-Commerce web application built with the **MERN** stack (MongoDB, Express, React, Node.js). It offers a rich, butter-smooth shopping experience with advanced features like variant-level inventory management, context-aware dynamic filtering, and a powerful Admin Dashboard.
 

@@ -216,10 +216,38 @@ const HomePage = () => {
               <FiChevronRight size={24} />
             </button>
 
-            <div className="flex flex-col md:flex-row w-full h-full relative z-0">
+            <div className="flex w-full h-full relative z-0">
+              {/* Background Images Layer */}
+              <div className="absolute inset-0 md:left-1/3 z-0">
+                {heroSlides.map((s, i) => (
+                  <div
+                    key={s.id}
+                    className="absolute inset-0 bg-cover bg-center md:bg-right bg-no-repeat transition-opacity duration-700 ease-in-out"
+                    style={{
+                      backgroundImage: `url('${s.image}')`,
+                      opacity: i === currentSlide && !isTransitioning ? 1 : 0,
+                    }}
+                  />
+                ))}
+              </div>
+
+              {/* Gradient Overlays for Readability */}
+              <div 
+                className="absolute inset-0 z-0 hidden md:block"
+                style={{
+                  background: `linear-gradient(to right, ${slide.gradientFrom} 0%, ${slide.gradientFrom} 35%, ${slide.gradientFrom}D0 50%, transparent 100%)`,
+                }}
+              />
+              <div 
+                className="absolute inset-0 z-0 md:hidden"
+                style={{
+                  background: `linear-gradient(to bottom, ${slide.gradientFrom} 0%, ${slide.gradientFrom} 45%, ${slide.gradientFrom}A0 65%, transparent 100%)`,
+                }}
+              />
+
               {/* Text Content */}
               <div 
-                className="w-full md:w-1/2 p-6 sm:p-12 md:p-16 lg:p-20 flex flex-col justify-center relative z-10 transition-all duration-500 ease-out"
+                className="w-full md:w-1/2 p-6 pt-10 sm:p-12 md:p-16 lg:p-20 flex flex-col justify-start md:justify-center relative z-10 transition-all duration-500 ease-out"
                 style={{
                   opacity: isTransitioning ? 0 : 1,
                   transform: isTransitioning ? 'translateY(20px)' : 'translateY(0)',
@@ -228,65 +256,36 @@ const HomePage = () => {
                 <span className={`${slide.badgeColor} font-black text-[10px] md:text-xs tracking-[0.2em] mb-2 md:mb-4 uppercase`}>
                   {slide.badge}
                 </span>
-                <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-black text-[#1a1a1a] mb-4 md:mb-6 leading-[1.15] md:leading-[1.1] tracking-tight">
+                <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-black text-[#1a1a1a] mb-4 md:mb-6 leading-[1.15] md:leading-[1.1] tracking-tight drop-shadow-sm">
                   {slide.title}
                 </h1>
-                <p className="text-gray-600 mb-6 md:mb-8 max-w-md text-sm md:text-[15px] leading-relaxed font-medium">
+                <p className="text-gray-700 mb-6 md:mb-8 max-w-md text-sm md:text-[15px] leading-relaxed font-medium">
                   {slide.description}
                 </p>
                 <div className="flex flex-wrap gap-3 md:gap-4 items-center">
                   <Link to="/shop" className="bg-primary text-white px-6 md:px-8 py-3 md:py-3.5 rounded-md font-bold text-xs md:text-sm hover:bg-[#e60047] transition shadow-[0_8px_20px_rgba(255,0,79,0.25)] flex items-center gap-2">
                     Shop Now <FiArrowRight />
                   </Link>
-                  <Link to="/shop" className="bg-white text-gray-800 px-6 md:px-8 py-3 md:py-3.5 rounded-md font-bold text-xs md:text-sm hover:bg-gray-50 transition border border-gray-200">
+                  <Link to="/shop" className="bg-white/80 backdrop-blur-md text-gray-800 px-6 md:px-8 py-3 md:py-3.5 rounded-md font-bold text-xs md:text-sm hover:bg-white transition border border-gray-200 shadow-sm">
                     Explore Deals
                   </Link>
                 </div>
               </div>
 
-              {/* Image Side */}
-              <div className="w-full md:w-1/2 relative min-h-[250px] flex-grow sm:min-h-[300px] md:min-h-full order-first md:order-last">
-                {/* Dot Indicators */}
-                <div className="absolute left-1/2 -translate-x-1/2 bottom-4 md:bottom-8 flex gap-3 z-20">
-                  {heroSlides.map((_, i) => (
-                    <button 
-                      key={i}
-                      onClick={() => goToSlide(i)}
-                      className={`rounded-full transition-all duration-500 cursor-pointer ${
-                        i === currentSlide 
-                          ? 'w-8 h-3 bg-primary shadow-md shadow-primary/30' 
-                          : 'w-3 h-3 bg-gray-300 hover:bg-gray-400'
-                      }`}
-                      aria-label={`Go to slide ${i + 1}`}
-                    />
-                  ))}
-                </div>
-
-                {/* All slide images stacked with crossfade */}
-                {heroSlides.map((s, i) => (
-                  <div
-                    key={s.id}
-                    className="absolute inset-0 bg-cover bg-center bg-no-repeat transition-opacity duration-700 ease-in-out"
-                    style={{
-                      backgroundImage: `url('${s.image}')`,
-                      opacity: i === currentSlide && !isTransitioning ? 1 : 0,
-                    }}
+              {/* Dot Indicators */}
+              <div className="absolute left-1/2 -translate-x-1/2 bottom-5 md:bottom-8 flex gap-3 z-20">
+                {heroSlides.map((_, i) => (
+                  <button 
+                    key={i}
+                    onClick={() => goToSlide(i)}
+                    className={`rounded-full transition-all duration-500 cursor-pointer ${
+                      i === currentSlide 
+                        ? 'w-8 h-3 bg-primary shadow-md shadow-primary/30' 
+                        : 'w-3 h-3 bg-gray-300/80 hover:bg-gray-400 backdrop-blur-sm'
+                    }`}
+                    aria-label={`Go to slide ${i + 1}`}
                   />
                 ))}
-
-                {/* Gradient overlay for text readability - Adjust for mobile */}
-                <div 
-                  className="absolute inset-0 transition-all duration-700 ease-in-out hidden md:block"
-                  style={{
-                    background: `linear-gradient(to right, ${slide.gradientFrom} 0%, ${slide.gradientFrom}80 15%, transparent 50%)`,
-                  }}
-                />
-                <div 
-                  className="absolute inset-0 transition-all duration-700 ease-in-out md:hidden"
-                  style={{
-                    background: `linear-gradient(to bottom, ${slide.gradientFrom} 0%, transparent 30%)`,
-                  }}
-                />
               </div>
             </div>
 

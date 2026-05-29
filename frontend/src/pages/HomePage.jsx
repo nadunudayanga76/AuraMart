@@ -547,19 +547,19 @@ const HomePage = () => {
         </section>
 
         {/* Why Choose Us */}
-        <section className="container mx-auto px-4 mb-20 text-center">
-           <h2 className="text-xl font-black text-gray-900 mb-10">Why Choose <span className="text-primary">AuraMart</span>?</h2>
-           <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
+        <section className="container mx-auto px-4 mb-12 md:mb-20 text-center">
+           <h2 className="text-lg md:text-xl font-black text-gray-900 mb-6 md:mb-10">Why Choose <span className="text-primary">AuraMart</span>?</h2>
+           <div className="grid grid-cols-2 md:grid-cols-4 gap-3 md:gap-8">
               {[
-                { icon: "✓", title: "100% Original Products", sub: "Authentic & Quality Assured" },
-                { icon: "↩️", title: "Easy Returns", sub: "Hassle Free Returns" },
-                { icon: "🔒", title: "Secure Payments", sub: "Multiple Payment Options" },
-                { icon: "🎧", title: "Customer Support", sub: "We're Here to Help" }
+                { icon: "✓", title: "100% Original", sub: "Quality Assured" },
+                { icon: "↩️", title: "Easy Returns", sub: "Hassle Free" },
+                { icon: "🔒", title: "Secure Payments", sub: "Multiple Options" },
+                { icon: "🎧", title: "24/7 Support", sub: "We're Here to Help" }
               ].map((f, i) => (
-                <div key={i} className="flex flex-col items-center">
-                   <div className="text-4xl mb-3 text-gray-700">{f.icon}</div>
-                   <h4 className="font-bold text-sm text-gray-900 mb-1">{f.title}</h4>
-                   <p className="text-xs text-gray-500 font-medium">{f.sub}</p>
+                <div key={i} className="flex flex-col items-center bg-gray-50/80 md:bg-transparent p-3 md:p-0 rounded-2xl md:rounded-none border border-gray-100 md:border-transparent">
+                   <div className="text-2xl md:text-4xl mb-2 md:mb-3 text-gray-700">{f.icon}</div>
+                   <h4 className="font-bold text-[11px] md:text-sm text-gray-900 mb-0.5 md:mb-1 leading-tight">{f.title}</h4>
+                   <p className="text-[9px] md:text-xs text-gray-500 font-medium leading-tight">{f.sub}</p>
                 </div>
               ))}
            </div>

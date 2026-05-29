@@ -7,11 +7,16 @@ const sendEmail = async (options) => {
     if (process.env.EMAIL_USER && process.env.EMAIL_PASS) {
       // Use real email service (e.g. Gmail)
       transporter = nodemailer.createTransport({
-        service: 'gmail',
+        host: 'smtp.gmail.com',
+        port: 465,
+        secure: true,
         auth: {
           user: process.env.EMAIL_USER,
           pass: process.env.EMAIL_PASS,
         },
+        tls: {
+          rejectUnauthorized: false
+        }
       });
     } else {
       // Fallback to Ethereal Email (Fake SMTP for testing)

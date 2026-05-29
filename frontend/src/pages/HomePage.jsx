@@ -502,7 +502,7 @@ const HomePage = () => {
               <span className="whitespace-nowrap">View All <span className="hidden sm:inline">Categories</span></span> <FiArrowRight className="group-hover:translate-x-1 transition-transform" />
             </Link>
           </div>
-          <div className="grid grid-cols-2 md:grid-cols-5 gap-4">
+          <div className="flex overflow-x-auto gap-4 pb-4 -mx-4 px-4 snap-x md:grid md:grid-cols-5 md:overflow-visible md:p-0 md:mx-0 md:snap-none [&::-webkit-scrollbar]:hidden [-ms-overflow-style:none] [scrollbar-width:none]">
              {[
                { name: "Fashion", items: "200+ Items", img: "/images/fashion_category.png" },
                { name: "Electronics", items: "120+ Items", img: "https://images.unsplash.com/photo-1498049794561-7780e7231661?w=300" },
@@ -510,12 +510,12 @@ const HomePage = () => {
                { name: "Beauty & Health", items: "100+ Items", img: "https://images.unsplash.com/photo-1522337660859-02fbefca4702?w=300" },
                { name: "Sports & Outdoors", items: "80+ Items", img: "https://images.unsplash.com/photo-1517836357463-d25dfeac3438?w=300" }
              ].map((cat, i) => (
-                <Link to={`/shop?category=${encodeURIComponent(cat.name)}`} key={i} className="group flex flex-col items-center">
-                   <div className="w-full aspect-[4/3] rounded-xl overflow-hidden mb-3 bg-gray-100">
+                <Link to={`/shop?category=${encodeURIComponent(cat.name)}`} key={i} className="group flex flex-col items-center min-w-[130px] md:min-w-0 snap-start">
+                   <div className="w-full aspect-[4/3] rounded-xl overflow-hidden mb-2 md:mb-3 bg-gray-100">
                      <img src={cat.img} alt={cat.name} className={`w-full h-full object-cover group-hover:scale-110 transition-transform duration-500 ${cat.name === 'Fashion' ? 'object-top' : ''}`} />
                    </div>
-                   <h4 className="font-bold text-gray-900 group-hover:text-primary transition">{cat.name}</h4>
-                   <span className="text-xs text-gray-500 font-medium">{cat.items}</span>
+                   <h4 className="font-bold text-[13px] md:text-base text-gray-900 group-hover:text-primary transition">{cat.name}</h4>
+                   <span className="text-[10px] md:text-xs text-gray-500 font-medium">{cat.items}</span>
                 </Link>
              ))}
           </div>

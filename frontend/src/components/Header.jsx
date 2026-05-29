@@ -341,7 +341,7 @@ const Header = () => {
               <span className="text-[10px] font-bold hidden xl:block">Wishlist</span>
             </Link>
 
-            <Link to="/cart" className="flex flex-col items-center gap-1 cursor-pointer hover:text-primary text-gray-700 transition">
+            <Link to="/cart" className="hidden md:flex flex-col items-center gap-1 cursor-pointer hover:text-primary text-gray-700 transition">
               <div className="relative">
                 <FiShoppingCart size={21} strokeWidth={1.5} />
                 {cartCount > 0 && (
@@ -459,16 +459,7 @@ const Header = () => {
               </Link>
             )}
 
-            {/* Mobile: small user avatar or login */}
-            {userInfo ? (
-              <button onClick={() => setMobileMenuOpen(true)} className="sm:hidden w-9 h-9 rounded-full bg-gray-100 border border-gray-200 overflow-hidden flex-shrink-0 cursor-pointer">
-                <img src={userInfo.avatar || `https://ui-avatars.com/api/?name=${encodeURIComponent(userInfo.name)}&background=FF004F&color=fff&bold=true`} alt="User" className="w-full h-full object-cover" />
-              </button>
-            ) : (
-              <Link to="/login" className="sm:hidden flex items-center justify-center w-9 h-9 rounded-full bg-gray-100 text-gray-700 cursor-pointer">
-                <FiUser size={18} />
-              </Link>
-            )}
+            {/* Mobile user avatar or login removed because it is handled by BottomNavigation */}
           </div>
         </div>
 

@@ -123,11 +123,22 @@ const FlashSaleSection = ({ categoryFilter }) => {
             </div>
           </div>
 
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+          <div 
+            className="flex lg:grid lg:grid-cols-4 overflow-x-auto gap-4 lg:gap-6 pb-4 -mx-4 px-4 lg:mx-0 lg:px-0 lg:pb-0 hide-scrollbar snap-x"
+            style={{ scrollbarWidth: 'none', msOverflowStyle: 'none' }}
+          >
             {flashProducts.slice(0, 4).map((product) => (
-              <ProductCard key={product._id} product={product} />
+              <div key={product._id} className="min-w-[240px] sm:min-w-[280px] lg:min-w-0 flex-shrink-0 snap-start">
+                <ProductCard product={product} />
+              </div>
             ))}
           </div>
+          
+          <style dangerouslySetInnerHTML={{__html: `
+            .hide-scrollbar::-webkit-scrollbar {
+              display: none;
+            }
+          `}} />
           
           {flashProducts.length > 4 && (
             <div className="flex justify-center mt-10">

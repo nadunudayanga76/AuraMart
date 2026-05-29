@@ -339,9 +339,12 @@ const HomePage = () => {
                <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-primary"></div>
              </div>
            ) : (
-             <div className="flex flex-wrap justify-center gap-6 md:gap-12 px-4">
+             <div 
+               className="flex overflow-x-auto hide-scrollbar snap-x md:flex-wrap justify-start md:justify-center gap-5 md:gap-12 px-2 md:px-4 pb-4 -mx-4 md:mx-0 pl-6 md:pl-0"
+               style={{ scrollbarWidth: 'none', msOverflowStyle: 'none' }}
+             >
                 {topCategories.map((cat, i) => (
-                  <Link to={`/category/${cat.slug}`} key={i} className="flex flex-col items-center group cursor-pointer w-[90px] md:w-[120px]">
+                  <Link to={`/category/${cat.slug}`} key={i} className="flex-shrink-0 snap-start flex flex-col items-center group cursor-pointer w-[80px] md:w-[120px]">
                     <div className={`w-20 h-20 md:w-28 md:h-28 rounded-full ${cat.homepageColor || 'bg-gray-50'} flex items-center justify-center mb-4 group-hover:scale-110 group-hover:shadow-lg transition-all duration-300 shadow-sm border border-gray-100 overflow-hidden ring-4 ring-transparent group-hover:ring-primary/10`}>
                       <img src={cat.homepageImage} alt={cat.name} className={`w-full h-full object-cover ${cat.name === 'Fashion' ? 'object-top' : ''}`} />
                     </div>

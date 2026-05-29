@@ -17,6 +17,7 @@ import ReturnPolicyPage from './pages/ReturnPolicyPage';
 import TrackOrderPage from './pages/TrackOrderPage';
 import WhatsAppButton from './components/WhatsAppButton';
 import ScrollToTop from './components/ScrollToTop';
+import BottomNavigation from './components/BottomNavigation';
 
 function App() {
   return (
@@ -42,6 +43,7 @@ function App() {
         <Route path="/support/returns" element={<ReturnPolicyPage />} />
         <Route path="/admin" element={<AdminDashboard />} />
       </Routes>
+      <BottomNavigation />
       <WhatsAppButton />
     </Router>
   );

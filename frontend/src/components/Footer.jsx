@@ -1,14 +1,20 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { BsBagHeartFill } from 'react-icons/bs';
-import { FiFacebook, FiTwitter, FiInstagram, FiYoutube, FiMapPin, FiPhone, FiMail, FiShield } from 'react-icons/fi';
+import { FiFacebook, FiTwitter, FiInstagram, FiYoutube, FiMapPin, FiPhone, FiMail, FiShield, FiChevronDown } from 'react-icons/fi';
 import { FaApple, FaGooglePlay } from 'react-icons/fa';
 
 const Footer = () => {
+  const [openSection, setOpenSection] = useState(null);
+
+  const toggleSection = (section) => {
+    setOpenSection(openSection === section ? null : section);
+  };
+
   return (
-    <footer className="bg-[#fafafa] border-t border-gray-100 pt-20 pb-8 mt-12">
+    <footer className="bg-[#fafafa] border-t border-gray-100 pt-16 md:pt-20 pb-8 mt-12">
       <div className="container mx-auto px-4">
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-12 lg:gap-8 mb-16">
+        <div className="flex flex-col md:grid md:grid-cols-2 lg:grid-cols-5 gap-6 md:gap-12 lg:gap-8 mb-12 md:mb-16">
           
           <div className="lg:col-span-2">
             <Link to="/" className="flex items-center gap-2 mb-6">
@@ -28,9 +34,12 @@ const Footer = () => {
             </div>
           </div>
 
-          <div>
-            <h4 className="font-bold text-gray-900 mb-6 text-[15px]">Shop</h4>
-            <ul className="space-y-4 text-[13px] text-gray-500 font-medium">
+          <div className="border-b border-gray-200 md:border-none pb-4 md:pb-0">
+            <button onClick={() => toggleSection('shop')} className="flex justify-between items-center w-full md:cursor-default">
+              <h4 className="font-bold text-gray-900 md:mb-6 text-[15px]">Shop</h4>
+              <FiChevronDown className={`md:hidden transition-transform duration-300 ${openSection === 'shop' ? 'rotate-180' : ''}`} />
+            </button>
+            <ul className={`space-y-4 text-[13px] text-gray-500 font-medium overflow-hidden transition-all duration-300 md:max-h-full ${openSection === 'shop' ? 'max-h-48 pt-4 md:pt-0 opacity-100' : 'max-h-0 md:max-h-full opacity-0 md:opacity-100'}`}>
               <li><Link to="/shop" className="hover:text-primary transition">All Products</Link></li>
               <li><Link to="/categories" className="hover:text-primary transition">Categories</Link></li>
               <li><Link to="/deals" className="hover:text-primary transition">Deals & Offers</Link></li>
@@ -39,9 +48,12 @@ const Footer = () => {
             </ul>
           </div>
 
-          <div>
-            <h4 className="font-bold text-gray-900 mb-6 text-[15px]">Customer Service</h4>
-            <ul className="space-y-4 text-[13px] text-gray-500 font-medium">
+          <div className="border-b border-gray-200 md:border-none pb-4 md:pb-0">
+            <button onClick={() => toggleSection('customer')} className="flex justify-between items-center w-full md:cursor-default">
+              <h4 className="font-bold text-gray-900 md:mb-6 text-[15px]">Customer Service</h4>
+              <FiChevronDown className={`md:hidden transition-transform duration-300 ${openSection === 'customer' ? 'rotate-180' : ''}`} />
+            </button>
+            <ul className={`space-y-4 text-[13px] text-gray-500 font-medium overflow-hidden transition-all duration-300 md:max-h-full ${openSection === 'customer' ? 'max-h-48 pt-4 md:pt-0 opacity-100' : 'max-h-0 md:max-h-full opacity-0 md:opacity-100'}`}>
               <li><Link to="/track-order" className="hover:text-primary transition">Track Order</Link></li>
               <li><Link to="/support/returns" className="hover:text-primary transition">Returns & Refunds</Link></li>
               <li><Link to="/support/faq" className="hover:text-primary transition">FAQ</Link></li>
@@ -49,29 +61,34 @@ const Footer = () => {
             </ul>
           </div>
 
-          <div>
-            <h4 className="font-bold text-gray-900 mb-6 text-[15px]">Company</h4>
-            <ul className="space-y-4 text-[13px] text-gray-500 font-medium mb-8">
-              <li><Link to="/about" className="hover:text-primary transition">About Us</Link></li>
-              <li><a href="mailto:support@auramart.com" className="hover:text-primary transition">Contact Us</a></li>
-            </ul>
+          <div className="pb-4 md:pb-0">
+            <button onClick={() => toggleSection('company')} className="flex justify-between items-center w-full md:cursor-default">
+              <h4 className="font-bold text-gray-900 md:mb-6 text-[15px]">Company</h4>
+              <FiChevronDown className={`md:hidden transition-transform duration-300 ${openSection === 'company' ? 'rotate-180' : ''}`} />
+            </button>
+            <div className={`overflow-hidden transition-all duration-300 md:max-h-full ${openSection === 'company' ? 'max-h-96 pt-4 md:pt-0 opacity-100' : 'max-h-0 md:max-h-full opacity-0 md:opacity-100'}`}>
+              <ul className="space-y-4 text-[13px] text-gray-500 font-medium mb-8">
+                <li><Link to="/about" className="hover:text-primary transition">About Us</Link></li>
+                <li><a href="mailto:support@auramart.com" className="hover:text-primary transition">Contact Us</a></li>
+              </ul>
 
-            <h4 className="font-bold text-gray-900 mb-4 text-[13px] uppercase tracking-wide">Get Our App</h4>
-            <div className="flex flex-col gap-3">
-               <a href="#" className="bg-gray-900 text-white rounded-xl px-4 py-2.5 flex items-center gap-3 hover:bg-primary transition-colors shadow-sm">
-                  <FaApple size={24} />
-                  <div className="flex flex-col">
-                     <span className="text-[9px] uppercase leading-none opacity-80 mb-0.5">Download on the</span>
-                     <span className="text-[14px] font-bold leading-none">App Store</span>
-                  </div>
-               </a>
-               <a href="#" className="bg-gray-900 text-white rounded-xl px-4 py-2.5 flex items-center gap-3 hover:bg-primary transition-colors shadow-sm">
-                  <FaGooglePlay size={22} />
-                  <div className="flex flex-col">
-                     <span className="text-[9px] uppercase leading-none opacity-80 mb-0.5">GET IT ON</span>
-                     <span className="text-[14px] font-bold leading-none">Google Play</span>
-                  </div>
-               </a>
+              <h4 className="font-bold text-gray-900 mb-4 text-[13px] uppercase tracking-wide">Get Our App</h4>
+              <div className="flex flex-col gap-3">
+                 <a href="#" className="bg-gray-900 text-white rounded-xl px-4 py-2.5 flex items-center gap-3 hover:bg-primary transition-colors shadow-sm w-max">
+                    <FaApple size={24} />
+                    <div className="flex flex-col">
+                       <span className="text-[9px] uppercase leading-none opacity-80 mb-0.5">Download on the</span>
+                       <span className="text-[14px] font-bold leading-none">App Store</span>
+                    </div>
+                 </a>
+                 <a href="#" className="bg-gray-900 text-white rounded-xl px-4 py-2.5 flex items-center gap-3 hover:bg-primary transition-colors shadow-sm w-max">
+                    <FaGooglePlay size={22} />
+                    <div className="flex flex-col">
+                       <span className="text-[9px] uppercase leading-none opacity-80 mb-0.5">GET IT ON</span>
+                       <span className="text-[14px] font-bold leading-none">Google Play</span>
+                    </div>
+                 </a>
+              </div>
             </div>
           </div>
 

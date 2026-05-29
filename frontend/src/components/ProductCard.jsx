@@ -107,7 +107,7 @@ const ProductCard = ({ product, isTrending = false }) => {
           />
         </button>
 
-        <Link to={`/product/${product._id}`} className="block h-48 sm:h-56 relative flex items-center justify-center">
+        <Link to={`/product/${product._id}`} className="block h-36 md:h-48 sm:h-56 relative flex items-center justify-center">
           <img 
             src={product.image || "https://placehold.co/400x400/f8f9fa/cccccc?text=Product"} 
             alt={product.name} 
@@ -116,7 +116,7 @@ const ProductCard = ({ product, isTrending = false }) => {
         </Link>
       </div>
 
-      <div className="p-5 flex flex-col flex-grow">
+      <div className="p-3 md:p-5 flex flex-col flex-grow">
         {isTrending && (
            <div className="mb-2">
              <span className="inline-flex items-center gap-1 px-2 py-0.5 rounded text-[9px] font-black uppercase tracking-wider bg-primary/10 text-primary border border-primary/20">
@@ -126,7 +126,7 @@ const ProductCard = ({ product, isTrending = false }) => {
            </div>
         )}
         <Link to={`/product/${product._id}`}>
-          <h4 className="font-bold text-gray-900 mb-2 truncate group-hover:text-primary transition cursor-pointer text-[15px]">
+          <h4 className="font-bold text-gray-900 mb-2 truncate group-hover:text-primary transition cursor-pointer text-xs md:text-[15px]">
             {product.name}
           </h4>
         </Link>
@@ -145,7 +145,7 @@ const ProductCard = ({ product, isTrending = false }) => {
               {product.originalPrice > product.price ? (
                 <>
                   <div className="flex items-center gap-2">
-                    <span className="text-[15px] sm:text-base font-black text-gray-900 leading-tight">LKR {product.price.toLocaleString('en-US', {minimumFractionDigits: 2})}</span>
+                    <span className="text-sm md:text-[15px] sm:text-base font-black text-gray-900 leading-tight">LKR {product.price.toLocaleString('en-US', {minimumFractionDigits: 2})}</span>
                     <span className="bg-red-50 text-red-600 px-1.5 py-0.5 rounded text-[10px] font-bold">
                       -{Math.round(((product.originalPrice - product.price) / product.originalPrice) * 100)}%
                     </span>
@@ -153,19 +153,19 @@ const ProductCard = ({ product, isTrending = false }) => {
                   <span className="text-[11px] text-gray-400 font-medium line-through mt-0.5 decoration-gray-300">LKR {product.originalPrice.toLocaleString('en-US', {minimumFractionDigits: 2})}</span>
                 </>
               ) : (
-                <span className="text-[15px] sm:text-base font-black text-gray-900 leading-tight">LKR {product.price.toLocaleString('en-US', {minimumFractionDigits: 2})}</span>
+                <span className="text-sm md:text-[15px] sm:text-base font-black text-gray-900 leading-tight">LKR {product.price.toLocaleString('en-US', {minimumFractionDigits: 2})}</span>
               )}
             </div>
             <button 
               onClick={handleAddToCart}
               disabled={isAddingToCart}
-              className={`flex-shrink-0 w-10 h-10 rounded-xl flex items-center justify-center transition-all cursor-pointer border-2 ${
+              className={`flex-shrink-0 w-8 h-8 md:w-10 md:h-10 rounded-lg md:rounded-xl flex items-center justify-center transition-all cursor-pointer border-2 ${
                 isAddingToCart 
                   ? 'bg-green-50 border-green-500 text-green-600 scale-95' 
                   : 'bg-white border-primary/20 text-primary hover:bg-primary hover:text-white hover:border-primary hover:shadow-lg hover:shadow-primary/20 hover:-translate-y-0.5'
               }`}
             >
-              {isAddingToCart ? <FiCheckCircle size={18} strokeWidth={2.5} className="animate-bounce" /> : <FiShoppingCart size={18} strokeWidth={2} />}
+              {isAddingToCart ? <FiCheckCircle size={16} strokeWidth={2.5} className="animate-bounce" /> : <FiShoppingCart className="w-4 h-4 md:w-[18px] md:h-[18px]" strokeWidth={2} />}
             </button>
           </div>
         </div>

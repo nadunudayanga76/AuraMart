@@ -25,7 +25,7 @@ export const registerUser = async (req, res) => {
 
     // Generate 6 digit OTP
     const otp = Math.floor(100000 + Math.random() * 900000).toString();
-    const otpExpires = new Date(Date.now() + 10 * 60 * 1000); // 10 minutes
+    const otpExpires = new Date(Date.now() + 2 * 60 * 1000); // 2 minutes
 
     const user = await User.create({
       name,
@@ -47,7 +47,7 @@ export const registerUser = async (req, res) => {
             <div style="text-align: center; margin: 30px 0;">
               <span style="font-size: 32px; font-weight: bold; letter-spacing: 5px; color: #333; background: #f3f4f6; padding: 10px 20px; border-radius: 8px;">${otp}</span>
             </div>
-            <p>This code will expire in 10 minutes.</p>
+            <p>This code will expire in 2 minutes.</p>
             <p>If you didn't request this, you can safely ignore this email.</p>
           </div>
         `;

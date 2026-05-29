@@ -10,7 +10,7 @@ import axios from 'axios';
 
 const RegisterPage = () => {
   const [step, setStep] = useState(1);
-  const [timeLeft, setTimeLeft] = useState(600);
+  const [timeLeft, setTimeLeft] = useState(120);
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
@@ -123,7 +123,7 @@ const RegisterPage = () => {
       });
       // Move to OTP step on success
       setStep(2);
-      setTimeLeft(600);
+      setTimeLeft(120);
     } catch (err) {
       setError(err.response?.data?.message || 'Failed to register account');
     } finally {

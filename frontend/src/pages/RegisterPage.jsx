@@ -71,9 +71,12 @@ const RegisterPage = () => {
           client_id: import.meta.env.VITE_GOOGLE_CLIENT_ID || "YOUR_GOOGLE_CLIENT_ID_HERE",
           callback: handleCredentialResponse,
         });
+        const container = document.getElementById("googleSignUpDiv");
+        const containerWidth = container ? container.offsetWidth : 300;
+        
         window.google.accounts.id.renderButton(
-          document.getElementById("googleSignUpDiv"),
-          { theme: "outline", size: "large", width: 384, shape: "pill" }
+          container,
+          { theme: "outline", size: "large", width: containerWidth, shape: "pill" }
         );
       }
     } catch (e) {

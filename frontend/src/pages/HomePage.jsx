@@ -567,21 +567,21 @@ const HomePage = () => {
 
         {/* Newsletter */}
         <section className="container mx-auto px-4 mb-10">
-          <div className="bg-[#fff1f4] rounded-2xl p-8 md:p-12 flex flex-col md:flex-row items-center justify-between gap-8 border border-pink-50">
-             <div className="flex items-center gap-6">
-                <div className="text-5xl opacity-80">💌</div>
+          <div className="bg-[#fff1f4] rounded-2xl p-6 md:p-12 flex flex-col lg:flex-row items-center justify-between gap-6 md:gap-8 border border-pink-50 text-center lg:text-left">
+             <div className="flex flex-col md:flex-row items-center gap-4 md:gap-6">
+                <div className="text-4xl md:text-5xl opacity-80">💌</div>
                 <div>
-                  <h3 className="text-xl font-black text-gray-900 mb-1">Subscribe to Our Newsletter</h3>
-                  <p className="text-xs text-gray-600 font-medium">Get the latest updates on new products, exclusive offers and more.</p>
+                  <h3 className="text-lg md:text-xl font-black text-gray-900 mb-1.5 md:mb-1">Subscribe to Our Newsletter</h3>
+                  <p className="text-[11px] md:text-xs text-gray-600 font-medium px-2 md:px-0">Get the latest updates on new products, exclusive offers and more.</p>
                 </div>
              </div>
-             <div className="flex w-full md:w-auto flex-1 max-w-md">
+             <div className="flex flex-col md:flex-row w-full lg:w-auto flex-1 max-w-md gap-3 md:gap-0 mt-2 md:mt-0">
                 <input 
                   type="email" 
                   placeholder="Enter your email address" 
-                  className="flex-1 px-4 py-3 rounded-l-md border border-gray-200 focus:outline-none focus:border-primary text-sm font-medium"
+                  className="w-full md:flex-1 px-4 py-3.5 md:py-3 rounded-xl md:rounded-r-none md:rounded-l-md border border-gray-200 focus:outline-none focus:border-primary text-sm font-medium"
                 />
-                <button className="bg-primary text-white px-6 py-3 rounded-r-md font-bold text-sm hover:bg-[#e60047] transition">
+                <button className="w-full md:w-auto bg-primary text-white px-6 py-3.5 md:py-3 rounded-xl md:rounded-l-none md:rounded-r-md font-bold text-sm hover:bg-[#e60047] transition">
                   Subscribe
                 </button>
              </div>

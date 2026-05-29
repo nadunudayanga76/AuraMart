@@ -15,50 +15,122 @@ export const registerUser = async (req, res) => {
     const userExists = await User.findOne({ email });
 
     if (userExists) {
-      return res.status(400).json({ message: 'User already exists' });
+      if (userExists.isVerified) {
+        return res.status(400).json({ message: 'User already exists and is verified' });
+      } else {
+        // Allow re-registering / generating new OTP if not verified yet
+        await User.deleteOne({ email });
+      }
     }
+
+    // Generate 6 digit OTP
+    const otp = Math.floor(100000 + Math.random() * 900000).toString();
+    const otpExpires = new Date(Date.now() + 10 * 60 * 1000); // 10 minutes
 
     const user = await User.create({
       name,
       email,
       password,
+      isVerified: false,
+      verificationCode: otp,
+      verificationCodeExpires: otpExpires
     });
 
     if (user) {
-      // Send Welcome Email
+      // Send OTP Email
       try {
         const emailHtml = `
           <div style="font-family: Arial, sans-serif; max-width: 600px; margin: auto; padding: 20px; border: 1px solid #eee; border-radius: 10px;">
-            <h2 style="color: #ff004f; text-align: center;">Welcome to AuraMart!</h2>
+            <h2 style="color: #ff004f; text-align: center;">Verify Your Email</h2>
             <p>Hi <strong>${user.name}</strong>,</p>
-            <p>We are thrilled to welcome you to AuraMart! Your account has been successfully created.</p>
-            <p>Get ready to explore premium quality products, exclusive deals, and a seamless shopping experience.</p>
+            <p>Thank you for registering at AuraMart. To complete your registration, please enter the following 6-digit verification code on the website:</p>
             <div style="text-align: center; margin: 30px 0;">
-              <a href="http://localhost:5173/shop" style="background-color: #ff004f; color: white; padding: 12px 25px; text-decoration: none; border-radius: 5px; font-weight: bold;">Start Shopping Now</a>
+              <span style="font-size: 32px; font-weight: bold; letter-spacing: 5px; color: #333; background: #f3f4f6; padding: 10px 20px; border-radius: 8px;">${otp}</span>
             </div>
-            <p>If you have any questions, feel free to reply to this email. We're here to help!</p>
-            <p style="margin-top: 30px; font-size: 0.9em; color: #6b7280; text-align: center;">Happy Shopping,<br>The AuraMart Team</p>
+            <p>This code will expire in 10 minutes.</p>
+            <p>If you didn't request this, you can safely ignore this email.</p>
           </div>
         `;
         sendEmail({
           email: user.email,
-          subject: 'Welcome to AuraMart! 🎉',
+          subject: 'AuraMart - Verification Code 🔐',
           html: emailHtml
         });
       } catch (err) {
-        console.error("Failed to send welcome email:", err);
+        console.error("Failed to send OTP email:", err);
       }
 
       res.status(201).json({
-        _id: user._id,
-        name: user.name,
+        message: 'OTP sent to email. Please verify.',
         email: user.email,
-        isAdmin: user.isAdmin,
-        token: generateToken(user._id),
       });
     } else {
       res.status(400).json({ message: 'Invalid user data' });
     }
+  } catch (error) {
+    res.status(500).json({ message: error.message });
+  }
+};
+
+export const verifyOTP = async (req, res) => {
+  const { email, otp } = req.body;
+  try {
+    const user = await User.findOne({ email });
+
+    if (!user) {
+      return res.status(404).json({ message: 'User not found' });
+    }
+
+    if (user.isVerified) {
+      return res.status(400).json({ message: 'Account is already verified' });
+    }
+
+    if (user.verificationCode !== otp) {
+      return res.status(400).json({ message: 'Invalid verification code' });
+    }
+
+    if (user.verificationCodeExpires < new Date()) {
+      return res.status(400).json({ message: 'Verification code has expired. Please try registering again.' });
+    }
+
+    // OTP is valid
+    user.isVerified = true;
+    user.verificationCode = undefined;
+    user.verificationCodeExpires = undefined;
+    await user.save();
+
+    // Send Welcome Email
+    try {
+      const emailHtml = `
+        <div style="font-family: Arial, sans-serif; max-width: 600px; margin: auto; padding: 20px; border: 1px solid #eee; border-radius: 10px;">
+          <h2 style="color: #ff004f; text-align: center;">Welcome to AuraMart!</h2>
+          <p>Hi <strong>${user.name}</strong>,</p>
+          <p>We are thrilled to welcome you to AuraMart! Your account has been successfully verified.</p>
+          <p>Get ready to explore premium quality products, exclusive deals, and a seamless shopping experience.</p>
+          <div style="text-align: center; margin: 30px 0;">
+            <a href="http://localhost:5173/shop" style="background-color: #ff004f; color: white; padding: 12px 25px; text-decoration: none; border-radius: 5px; font-weight: bold;">Start Shopping Now</a>
+          </div>
+          <p>If you have any questions, feel free to reply to this email. We're here to help!</p>
+          <p style="margin-top: 30px; font-size: 0.9em; color: #6b7280; text-align: center;">Happy Shopping,<br>The AuraMart Team</p>
+        </div>
+      `;
+      sendEmail({
+        email: user.email,
+        subject: 'Welcome to AuraMart! 🎉',
+        html: emailHtml
+      });
+    } catch (err) {
+      console.error("Failed to send welcome email:", err);
+    }
+
+    res.json({
+      _id: user._id,
+      name: user.name,
+      email: user.email,
+      isAdmin: user.isAdmin,
+      token: generateToken(user._id),
+    });
+
   } catch (error) {
     res.status(500).json({ message: error.message });
   }
@@ -71,6 +143,12 @@ export const loginUser = async (req, res) => {
     const user = await User.findOne({ email });
 
     if (user && (await user.matchPassword(password))) {
+      if (!user.isVerified && user.password) {
+        // If password is set and not verified, they need to verify
+        // (Google users might not have a password initially, but we set one randomly. We set isVerified to true for Google)
+        return res.status(403).json({ message: 'Please verify your email to log in.' });
+      }
+
       if (user.isBanned) {
         return res.status(403).json({ message: 'Your account has been banned by the admin.' });
       }
@@ -104,6 +182,7 @@ export const googleLogin = async (req, res) => {
         email,
         password: generatedPassword,
         isAdmin: false,
+        isVerified: true, // Google verifies email automatically
         avatar: picture
       });
       

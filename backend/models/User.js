@@ -8,6 +8,9 @@ const userSchema = new mongoose.Schema(
     password: { type: String, required: true },
     isAdmin: { type: Boolean, required: true, default: false },
     isBanned: { type: Boolean, required: true, default: false },
+    isVerified: { type: Boolean, required: true, default: false },
+    verificationCode: { type: String },
+    verificationCodeExpires: { type: Date },
     avatar: { type: String, default: "" },
     addresses: [
       {

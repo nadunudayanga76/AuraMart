@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
-import { FiMail, FiLock, FiAlertCircle } from 'react-icons/fi';
+import { FiUser, FiMail, FiLock, FiAlertCircle } from 'react-icons/fi';
 import { FcGoogle } from 'react-icons/fc';
 import { loginSuccess } from '../store/authSlice';
 import Header from '../components/Header';
@@ -9,8 +9,10 @@ import Footer from '../components/Footer';
 import axios from 'axios';
 
 const RegisterPage = () => {
+  const [name, setName] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  const [confirmPassword, setConfirmPassword] = useState('');
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
   const [googleLoading, setGoogleLoading] = useState(false);
@@ -86,14 +88,11 @@ const RegisterPage = () => {
     e.preventDefault();
     setError(null);
 
-    if (password.length < 6) {
-      return setError('Password must be at least 6 characters');
+    if (password !== confirmPassword) {
+      return setError('Passwords do not match');
     }
 
     setLoading(true);
-
-    // Auto-generate name from email prefix (e.g. john.doe@gmail.com -> "John Doe")
-    const name = email.split('@')[0].replace(/[._-]/g, ' ').replace(/\b\w/g, c => c.toUpperCase());
 
     try {
       const { data } = await axios.post(`${import.meta.env.VITE_API_URL || 'http://localhost:5000'}/api/users/register`, {
@@ -108,6 +107,25 @@ const RegisterPage = () => {
     } finally {
       setLoading(false);
     }
+  };
+
+  const handleFallbackGoogleRegister = () => {
+    setGoogleLoading(true);
+    setError(null);
+
+    setTimeout(() => {
+      const mockGoogleUser = {
+        _id: 'google_user_123',
+        name: 'Alex Mercer',
+        email: 'alex.mercer@gmail.com',
+        isAdmin: false,
+        token: 'google_mock_token_jwt_998877',
+        avatar: 'https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?w=150',
+      };
+      dispatch(loginSuccess(mockGoogleUser));
+      setGoogleLoading(false);
+      navigate('/');
+    }, 1500);
   };
 
   return (
@@ -131,6 +149,23 @@ const RegisterPage = () => {
           )}
 
           <form onSubmit={handleSubmit} className="space-y-4">
+            <div>
+              <label className="block text-xs font-bold text-gray-700 uppercase tracking-wider mb-2">Full Name</label>
+              <div className="relative">
+                <span className="absolute inset-y-0 left-0 flex items-center pl-4 text-gray-400">
+                  <FiUser size={18} />
+                </span>
+                <input
+                  type="text"
+                  required
+                  placeholder="John Doe"
+                  value={name}
+                  onChange={(e) => setName(e.target.value)}
+                  className="w-full pl-11 pr-4 py-3 bg-gray-50 border border-gray-200 rounded-xl text-sm focus:outline-none focus:ring-2 focus:ring-primary/20 focus:border-primary transition font-medium"
+                />
+              </div>
+            </div>
+
             <div>
               <label className="block text-xs font-bold text-gray-700 uppercase tracking-wider mb-2">Email Address</label>
               <div className="relative">
@@ -158,13 +193,28 @@ const RegisterPage = () => {
                   type="password"
                   required
                   placeholder="••••••••"
-                  minLength={6}
                   value={password}
                   onChange={(e) => setPassword(e.target.value)}
                   className="w-full pl-11 pr-4 py-3 bg-gray-50 border border-gray-200 rounded-xl text-sm focus:outline-none focus:ring-2 focus:ring-primary/20 focus:border-primary transition font-medium"
                 />
               </div>
-              <p className="text-[11px] text-gray-400 mt-1.5 ml-1 font-medium">Must be at least 6 characters</p>
+            </div>
+
+            <div>
+              <label className="block text-xs font-bold text-gray-700 uppercase tracking-wider mb-2">Confirm Password</label>
+              <div className="relative">
+                <span className="absolute inset-y-0 left-0 flex items-center pl-4 text-gray-400">
+                  <FiLock size={18} />
+                </span>
+                <input
+                  type="password"
+                  required
+                  placeholder="••••••••"
+                  value={confirmPassword}
+                  onChange={(e) => setConfirmPassword(e.target.value)}
+                  className="w-full pl-11 pr-4 py-3 bg-gray-50 border border-gray-200 rounded-xl text-sm focus:outline-none focus:ring-2 focus:ring-primary/20 focus:border-primary transition font-medium"
+                />
+              </div>
             </div>
 
             <button
@@ -185,6 +235,7 @@ const RegisterPage = () => {
           <div className="flex justify-center mb-4">
             <div id="googleSignUpDiv" className="w-full max-w-sm flex justify-center"></div>
           </div>
+
 
           <p className="text-center text-sm text-gray-600 mt-8 font-medium">
             Already have an account?{' '}

@@ -52,7 +52,61 @@ const CartPage = () => {
         ) : (
           <div className="flex flex-col lg:flex-row gap-8">
             <div className="flex-1">
-              <div className="bg-white rounded-lg shadow-sm border border-gray-200 overflow-hidden">
+              {/* Mobile Cart Items (Cards) */}
+              <div className="md:hidden space-y-4">
+                {cartItems.map((item) => (
+                  <div key={item.cartItemId || item._id} className="bg-white p-4 rounded-xl shadow-sm border border-gray-200 flex gap-4 relative">
+                    <button 
+                      className="absolute top-3 right-3 text-red-400 hover:text-red-600 transition p-2 bg-red-50 hover:bg-red-100 rounded-full"
+                      onClick={() => removeFromCartHandler(item.cartItemId || item._id)}
+                    >
+                      <FiTrash2 size={16} />
+                    </button>
+                    <div className="w-20 h-20 bg-gray-100 rounded-lg overflow-hidden flex-shrink-0 border border-gray-100">
+                      <img src={item.image} alt={item.name} className="w-full h-full object-cover" />
+                    </div>
+                    <div className="flex-1 pr-8">
+                      <Link to={`/product/${item._id}`} className="font-bold text-gray-900 hover:text-primary transition line-clamp-1 text-sm">
+                        {item.name}
+                      </Link>
+                      <div className="text-xs text-gray-500 mt-0.5">
+                        {item.brand}
+                        {(item.selectedColor || item.selectedSize) && (
+                          <span className="block mt-0.5 text-primary font-medium">
+                            {item.selectedColor} {item.selectedSize && `/ ${item.selectedSize}`}
+                          </span>
+                        )}
+                      </div>
+                      <div className="font-bold text-gray-950 mt-1">LKR {item.price.toLocaleString('en-US', { minimumFractionDigits: 2 })}</div>
+                      <div className="flex items-center border border-gray-200 rounded w-max mt-3 overflow-hidden">
+                        <button 
+                          className="px-3 py-1 text-gray-500 hover:bg-gray-100 font-bold transition bg-gray-50"
+                          onClick={() => updateCartQty(item, item.qty - 1)}
+                          disabled={item.qty <= 1}
+                        >
+                          -
+                        </button>
+                        <input 
+                          type="text" 
+                          value={item.qty} 
+                          readOnly 
+                          className="w-8 text-center text-sm font-semibold focus:outline-none bg-white" 
+                        />
+                        <button 
+                          className="px-3 py-1 text-gray-500 hover:bg-gray-100 font-bold transition bg-gray-50"
+                          onClick={() => updateCartQty(item, item.qty + 1)}
+                          disabled={item.qty >= item.countInStock}
+                        >
+                          +
+                        </button>
+                      </div>
+                    </div>
+                  </div>
+                ))}
+              </div>
+
+              {/* Desktop Cart Items (Table) */}
+              <div className="hidden md:block bg-white rounded-lg shadow-sm border border-gray-200 overflow-hidden">
                 <table className="w-full text-left border-collapse">
                   <thead className="bg-gray-50 border-b border-gray-200 text-gray-500 text-sm">
                     <tr>

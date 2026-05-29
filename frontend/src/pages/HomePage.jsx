@@ -303,19 +303,19 @@ const HomePage = () => {
         </section>
 
         {/* Feature Badges */}
-        <section className="container mx-auto px-4 mb-16">
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-6 bg-white rounded-2xl p-8 shadow-[0_4px_20px_-10px_rgba(0,0,0,0.05)] border border-gray-100">
+        <section className="container mx-auto px-4 mb-10 md:mb-16 mt-2 md:mt-0">
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-y-5 gap-x-2 md:gap-6 bg-white rounded-2xl p-4 md:p-8 shadow-sm md:shadow-[0_4px_20px_-10px_rgba(0,0,0,0.05)] border border-gray-100">
             {[
               { icon: '🚚', title: 'Free Shipping', desc: 'On orders over LKR 5000' },
               { icon: '💲', title: 'Money Back', desc: '30 days guarantee' },
               { icon: '🛡️', title: 'Secure Payment', desc: '100% secure payment' },
               { icon: '🎧', title: '24/7 Support', desc: 'Dedicated support' }
             ].map((f, i) => (
-              <div key={i} className="flex items-center gap-4">
-                 <div className="text-3xl">{f.icon}</div>
+              <div key={i} className="flex flex-col md:flex-row items-center md:items-center text-center md:text-left gap-1.5 md:gap-4">
+                 <div className="text-2xl md:text-3xl bg-gray-50 md:bg-transparent p-2 md:p-0 rounded-full">{f.icon}</div>
                  <div>
-                   <h4 className="font-bold text-gray-900 text-sm">{f.title}</h4>
-                   <p className="text-xs text-gray-500 font-medium">{f.desc}</p>
+                   <h4 className="font-bold text-gray-900 text-[11px] md:text-sm">{f.title}</h4>
+                   <p className="text-[9px] md:text-xs text-gray-500 font-medium mt-0.5 md:mt-0">{f.desc}</p>
                  </div>
               </div>
             ))}

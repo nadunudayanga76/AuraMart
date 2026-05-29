@@ -112,7 +112,7 @@ const Footer = () => {
            </div>
         </div>
 
-        <div className="hidden md:flex border-t border-gray-200 pt-8 pb-4 flex-col items-center justify-center gap-5">
+        <div className="flex border-t border-gray-200 pt-8 pb-20 md:pb-4 flex-col items-center justify-center gap-5">
           <div className="flex gap-2 items-center flex-wrap justify-center">
              <div className="px-3 py-1 border border-gray-200 bg-white rounded text-[10px] font-black text-blue-800 italic">VISA</div>
              <div className="px-3 py-1 border border-gray-200 bg-white rounded flex items-center justify-center gap-1">

@@ -143,8 +143,8 @@ export const loginUser = async (req, res) => {
     const user = await User.findOne({ email });
 
     if (user && (await user.matchPassword(password))) {
-      if (!user.isVerified && user.password) {
-        // If password is set and not verified, they need to verify
+      if (!user.isVerified && user.password && !user.isAdmin) {
+        // If password is set, not verified, and NOT an admin, they need to verify
         // (Google users might not have a password initially, but we set one randomly. We set isVerified to true for Google)
         return res.status(403).json({ message: 'Please verify your email to log in.' });
       }

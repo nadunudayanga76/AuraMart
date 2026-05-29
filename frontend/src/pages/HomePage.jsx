@@ -195,7 +195,7 @@ const HomePage = () => {
         {/* Hero Section - Auto-shuffling Carousel */}
         <section className="container mx-auto px-4 mt-6 mb-12">
           <div 
-            className="rounded-3xl overflow-hidden relative flex flex-col md:flex-row items-stretch transition-colors duration-700 ease-in-out min-h-[500px] sm:min-h-[550px] md:min-h-[420px] md:aspect-[21/9] md:max-h-[560px]"
+            className="rounded-3xl overflow-hidden relative flex flex-col md:flex-row items-stretch transition-colors duration-700 ease-in-out min-h-[400px] sm:min-h-[450px] md:min-h-[420px] md:aspect-[21/9] md:max-h-[560px]"
             style={{ backgroundColor: slide.bgColor }}
             onMouseEnter={stopAutoSlide}
             onMouseLeave={startAutoSlide}

@@ -216,7 +216,7 @@ const HomePage = () => {
               <FiChevronRight size={24} />
             </button>
 
-            <div className="flex w-full h-full relative z-0">
+            <div className="flex flex-1 w-full h-full relative z-0">
               {/* Background Images Layer */}
               <div className="absolute inset-0 md:left-1/3 z-0">
                 {heroSlides.map((s, i) => (
@@ -290,7 +290,7 @@ const HomePage = () => {
             </div>
 
             {/* Progress bar at bottom */}
-            <div className="absolute bottom-0 left-0 right-0 h-1 bg-black/5 z-20">
+            <div className="absolute bottom-0 left-0 right-0 h-1 bg-black/5 z-20 hidden md:block">
               <div 
                 className="h-full bg-primary/60 rounded-r-full"
                 style={{

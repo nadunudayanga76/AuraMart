@@ -24,6 +24,7 @@ const heroSlides = [
     description: 'Shop the latest trending products with unbeatable prices and premium quality.',
     bgColor: '#fff3f5',
     gradientFrom: '#fff3f5',
+    link: '/shop',
   },
   {
     id: 2,
@@ -34,6 +35,7 @@ const heroSlides = [
     description: 'Explore cutting-edge technology with exclusive discounts on top brands.',
     bgColor: '#eef2ff',
     gradientFrom: '#eef2ff',
+    link: '/shop?category=Electronics',
   },
   {
     id: 3,
@@ -44,6 +46,7 @@ const heroSlides = [
     description: 'Discover premium home décor and furniture to elevate your lifestyle.',
     bgColor: '#f0fdf4',
     gradientFrom: '#f0fdf4',
+    link: '/shop?category=Home%20%26%20Living',
   },
   {
     id: 4,
@@ -54,6 +57,7 @@ const heroSlides = [
     description: 'Indulge in luxury beauty essentials with up to 40% off top products.',
     bgColor: '#fdf2f8',
     gradientFrom: '#fdf2f8',
+    link: '/shop?category=Beauty%20%26%20Health',
   },
 ];
 
@@ -263,10 +267,10 @@ const HomePage = () => {
                   {slide.description}
                 </p>
                 <div className="flex flex-wrap gap-3 md:gap-4 items-center">
-                  <Link to="/shop" className="bg-primary text-white px-6 md:px-8 py-3 md:py-3.5 rounded-md font-bold text-xs md:text-sm hover:bg-[#e60047] transition shadow-[0_8px_20px_rgba(255,0,79,0.25)] flex items-center gap-2">
+                  <Link to={slide.link || "/shop"} className="bg-primary text-white px-6 md:px-8 py-3 md:py-3.5 rounded-md font-bold text-xs md:text-sm hover:bg-[#e60047] transition shadow-[0_8px_20px_rgba(255,0,79,0.25)] flex items-center gap-2">
                     Shop Now <FiArrowRight />
                   </Link>
-                  <Link to="/shop" className="bg-white/80 backdrop-blur-md text-gray-800 px-6 md:px-8 py-3 md:py-3.5 rounded-md font-bold text-xs md:text-sm hover:bg-white transition border border-gray-200 shadow-sm">
+                  <Link to={slide.link || "/shop"} className="bg-white/80 backdrop-blur-md text-gray-800 px-6 md:px-8 py-3 md:py-3.5 rounded-md font-bold text-xs md:text-sm hover:bg-white transition border border-gray-200 shadow-sm">
                     Explore Deals
                   </Link>
                 </div>

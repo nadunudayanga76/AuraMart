@@ -121,8 +121,8 @@ const CategoryPage = () => {
       
       <main>
         {/* Premium Hero Banner */}
-        <section className="container mx-auto px-4 mt-6 mb-16">
-          <div className="rounded-[2rem] relative min-h-[450px] md:min-h-[500px] shadow-sm overflow-hidden group flex items-center">
+        <section className="container mx-auto px-4 mt-4 md:mt-6 mb-10 md:mb-16">
+          <div className="rounded-[1.5rem] md:rounded-[2rem] relative min-h-[300px] md:min-h-[500px] shadow-sm overflow-hidden group flex items-center">
              
              {/* Full Width Image Background */}
              <img 
@@ -135,23 +135,23 @@ const CategoryPage = () => {
              <div className="absolute inset-0 bg-gradient-to-r from-white/95 via-white/50 to-transparent transition-opacity duration-500"></div>
              
              {/* Floating Glassmorphism Text Card - enhanced opacity and blur for perfect readability */}
-             <div className="relative z-10 w-full md:w-[60%] lg:w-[45%] mx-4 md:ml-12 lg:ml-16 p-8 md:p-12 bg-white/70 backdrop-blur-2xl rounded-3xl shadow-[0_20px_60px_-15px_rgba(0,0,0,0.1)] border border-white flex flex-col justify-center transform transition-transform duration-500 group-hover:-translate-y-1">
-                <div className="flex items-center gap-3 mb-6">
-                  <span className="w-8 h-[2px] bg-gray-900 rounded-full"></span>
-                  <span className="text-gray-900 text-[10px] font-black uppercase tracking-[0.2em]">
+             <div className="relative z-10 w-[85%] md:w-[60%] lg:w-[45%] mx-4 md:ml-12 lg:ml-16 p-5 md:p-12 bg-white/70 backdrop-blur-2xl rounded-2xl md:rounded-3xl shadow-[0_20px_60px_-15px_rgba(0,0,0,0.1)] border border-white flex flex-col justify-center transform transition-transform duration-500 group-hover:-translate-y-1">
+                <div className="flex items-center gap-2 md:gap-3 mb-3 md:mb-6">
+                  <span className="w-6 md:w-8 h-[2px] bg-gray-900 rounded-full"></span>
+                  <span className="text-gray-900 text-[8px] md:text-[10px] font-black uppercase tracking-[0.2em]">
                     Featured Category
                   </span>
                 </div>
-                <h1 className="text-4xl md:text-5xl lg:text-6xl font-black text-gray-900 mb-6 tracking-tight leading-[1.1]">
+                <h1 className="text-2xl md:text-5xl lg:text-6xl font-black text-gray-900 mb-2 md:mb-6 tracking-tight leading-[1.1]">
                   {config.heroTitle}
                 </h1>
-                <p className="text-gray-700 text-lg mb-10 font-medium leading-relaxed">
+                <p className="text-gray-700 text-xs md:text-lg mb-5 md:mb-10 font-medium leading-relaxed">
                   {config.heroSubtitle}
                 </p>
                 <div>
-                  <button className="bg-gray-900 text-white px-7 py-3 rounded-full font-bold text-[13px] hover:bg-primary transition-all duration-300 shadow-lg shadow-gray-900/20 hover:shadow-primary/30 flex items-center gap-2 group-hover:px-8">
+                  <button className="bg-gray-900 text-white px-5 md:px-7 py-2.5 md:py-3 rounded-full font-bold text-[11px] md:text-[13px] hover:bg-primary transition-all duration-300 shadow-lg shadow-gray-900/20 hover:shadow-primary/30 flex items-center gap-2 group-hover:px-6 md:group-hover:px-8 w-max">
                     Explore Collection
-                    <svg className="w-4 h-4 transition-transform group-hover:translate-x-1" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M14 5l7 7m0 0l-7 7m7-7H3"></path></svg>
+                    <svg className="w-3.5 h-3.5 md:w-4 md:h-4 transition-transform group-hover:translate-x-1" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M14 5l7 7m0 0l-7 7m7-7H3"></path></svg>
                   </button>
                 </div>
              </div>

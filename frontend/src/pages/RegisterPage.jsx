@@ -10,6 +10,7 @@ import axios from 'axios';
 
 const RegisterPage = () => {
   const [step, setStep] = useState(1);
+  const [timeLeft, setTimeLeft] = useState(600);
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
@@ -86,6 +87,24 @@ const RegisterPage = () => {
     }
   }, [userInfo, navigate]);
 
+  useEffect(() => {
+    let timer;
+    if (step === 2 && timeLeft > 0) {
+      timer = setInterval(() => {
+        setTimeLeft((prev) => prev - 1);
+      }, 1000);
+    } else if (timeLeft === 0) {
+      clearInterval(timer);
+    }
+    return () => clearInterval(timer);
+  }, [step, timeLeft]);
+
+  const formatTime = (seconds) => {
+    const m = Math.floor(seconds / 60).toString().padStart(2, '0');
+    const s = (seconds % 60).toString().padStart(2, '0');
+    return `${m}:${s}`;
+  };
+
   const handleSubmit = async (e) => {
     e.preventDefault();
     setError(null);
@@ -104,6 +123,7 @@ const RegisterPage = () => {
       });
       // Move to OTP step on success
       setStep(2);
+      setTimeLeft(600);
     } catch (err) {
       setError(err.response?.data?.message || 'Failed to register account');
     } finally {
@@ -260,6 +280,10 @@ const RegisterPage = () => {
                   We've sent a 6-digit verification code to <br />
                   <strong className="text-gray-800">{email}</strong>
                 </p>
+                <div className="mt-4 inline-flex items-center gap-2 bg-rose-50 text-rose-600 px-4 py-2 rounded-full font-bold text-sm border border-rose-100">
+                  <span>Expires in:</span>
+                  <span className="font-mono text-base">{formatTime(timeLeft)}</span>
+                </div>
               </div>
 
               {error && (

@@ -769,7 +769,7 @@ const Header = () => {
           <div className="py-2">
             <p className="px-5 py-2 text-[10px] font-bold text-gray-400 uppercase tracking-widest">Help & Info</p>
             <Link
-              to="/support"
+              to="/support/faq"
               onClick={() => setMobileMenuOpen(false)}
               className="flex items-center justify-between px-5 py-3.5 text-gray-700 hover:bg-gray-50 transition border-l-[3px] border-transparent"
             >

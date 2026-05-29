@@ -195,7 +195,7 @@ const HomePage = () => {
         {/* Hero Section - Auto-shuffling Carousel */}
         <section className="container mx-auto px-4 mt-6 mb-12">
           <div 
-            className="rounded-3xl overflow-hidden relative flex flex-col md:flex-row items-stretch transition-colors duration-700 ease-in-out min-h-[400px] sm:min-h-[450px] md:min-h-[420px] md:aspect-[21/9] md:max-h-[560px]"
+            className="rounded-3xl overflow-hidden relative flex flex-col md:flex-row items-stretch transition-colors duration-700 ease-in-out min-h-[340px] sm:min-h-[380px] md:min-h-[420px] md:aspect-[21/9] md:max-h-[560px]"
             style={{ backgroundColor: slide.bgColor }}
             onMouseEnter={stopAutoSlide}
             onMouseLeave={startAutoSlide}
@@ -247,7 +247,7 @@ const HomePage = () => {
 
               {/* Text Content */}
               <div 
-                className="w-full md:w-1/2 px-6 pt-10 pb-16 sm:p-12 sm:pb-20 md:p-16 lg:p-20 flex flex-col justify-start md:justify-center relative z-10 transition-all duration-500 ease-out"
+                className="w-full md:w-1/2 px-6 pt-10 pb-12 sm:p-12 sm:pb-16 md:p-16 lg:p-20 flex flex-col justify-start md:justify-center relative z-10 transition-all duration-500 ease-out"
                 style={{
                   opacity: isTransitioning ? 0 : 1,
                   transform: isTransitioning ? 'translateY(20px)' : 'translateY(0)',

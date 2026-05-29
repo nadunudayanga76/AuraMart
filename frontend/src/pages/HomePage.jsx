@@ -369,8 +369,8 @@ const HomePage = () => {
               </h2>
               <p className="text-gray-500 text-sm mt-1">Discover what everyone is talking about.</p>
             </div>
-            <Link to="/shop?sort=trending" className="group text-sm font-bold text-primary flex items-center gap-1.5 px-4 py-2 rounded-full bg-primary/5 hover:bg-primary/10 transition-all border border-transparent hover:border-primary/20">
-              View All <FiArrowRight className="group-hover:translate-x-1 transition-transform" />
+            <Link to="/shop?sort=trending" className="group text-xs md:text-sm font-bold text-primary flex items-center gap-1 md:gap-1.5 px-3 py-1.5 md:px-4 md:py-2 rounded-full bg-primary/5 hover:bg-primary/10 transition-all border border-transparent hover:border-primary/20">
+              <span className="whitespace-nowrap">View All</span> <FiArrowRight className="group-hover:translate-x-1 transition-transform" />
             </Link>
           </div>
           
@@ -476,8 +476,8 @@ const HomePage = () => {
         <section className="container mx-auto px-4 mb-20">
           <div className="flex justify-between items-center mb-8">
             <h2 className="text-2xl font-black text-gray-900">Featured Products</h2>
-            <Link to="/shop" className="group text-sm font-bold text-primary flex items-center gap-1.5 px-4 py-2 rounded-full bg-primary/5 hover:bg-primary/10 transition-all border border-transparent hover:border-primary/20">
-              View All Products <FiArrowRight className="group-hover:translate-x-1 transition-transform" />
+            <Link to="/shop" className="group text-xs md:text-sm font-bold text-primary flex items-center gap-1 md:gap-1.5 px-3 py-1.5 md:px-4 md:py-2 rounded-full bg-primary/5 hover:bg-primary/10 transition-all border border-transparent hover:border-primary/20">
+              <span className="whitespace-nowrap">View All <span className="hidden sm:inline">Products</span></span> <FiArrowRight className="group-hover:translate-x-1 transition-transform" />
             </Link>
           </div>
           
@@ -498,8 +498,8 @@ const HomePage = () => {
         <section className="container mx-auto px-4 mb-20">
           <div className="flex justify-between items-center mb-8">
             <h2 className="text-2xl font-black text-gray-900">Top Categories</h2>
-            <Link to="/categories" className="group text-sm font-bold text-primary flex items-center gap-1.5 px-4 py-2 rounded-full bg-primary/5 hover:bg-primary/10 transition-all border border-transparent hover:border-primary/20">
-              View All Categories <FiArrowRight className="group-hover:translate-x-1 transition-transform" />
+            <Link to="/categories" className="group text-xs md:text-sm font-bold text-primary flex items-center gap-1 md:gap-1.5 px-3 py-1.5 md:px-4 md:py-2 rounded-full bg-primary/5 hover:bg-primary/10 transition-all border border-transparent hover:border-primary/20">
+              <span className="whitespace-nowrap">View All <span className="hidden sm:inline">Categories</span></span> <FiArrowRight className="group-hover:translate-x-1 transition-transform" />
             </Link>
           </div>
           <div className="grid grid-cols-2 md:grid-cols-5 gap-4">

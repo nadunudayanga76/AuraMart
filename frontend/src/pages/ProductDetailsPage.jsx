@@ -392,25 +392,30 @@ const ProductDetailsPage = () => {
                {((product.variants && product.variants.length > 0) || (product.colors && product.colors.length > 0)) && (
                  <div className="mb-6">
                     <label className="block text-sm font-bold text-gray-900 mb-2">Color:</label>
-                    <select 
-                      value={selectedColor} 
-                      onChange={(e) => {
-                        const newColor = e.target.value;
-                        setSelectedColor(newColor);
-                        if (product.variants && product.variants.length > 0) {
-                          const matchedVariant = product.variants.find(v => v.color === newColor);
-                          if (matchedVariant && matchedVariant.image) {
-                            setSelectedImage(matchedVariant.image);
-                          }
-                          setQty(1);
-                        }
-                      }}
-                      className="border border-gray-300 text-gray-700 rounded-md px-3 py-2 text-sm bg-white focus:outline-none focus:ring-1 focus:ring-primary focus:border-primary w-48"
-                    >
+                    <div className="flex flex-wrap gap-2">
                       {uniqueColors.map(color => (
-                        <option key={color} value={color}>{color}</option>
+                        <button
+                          key={color}
+                          onClick={() => {
+                            setSelectedColor(color);
+                            if (product.variants && product.variants.length > 0) {
+                              const matchedVariant = product.variants.find(v => v.color === color);
+                              if (matchedVariant && matchedVariant.image) {
+                                setSelectedImage(matchedVariant.image);
+                              }
+                              setQty(1);
+                            }
+                          }}
+                          className={`px-4 py-2 border rounded-md text-sm font-medium transition-colors cursor-pointer ${
+                            selectedColor === color 
+                              ? 'border-primary text-primary bg-primary/5' 
+                              : 'border-gray-200 text-gray-600 hover:border-gray-300 bg-white'
+                          }`}
+                        >
+                          {color}
+                        </button>
                       ))}
-                    </select>
+                    </div>
                  </div>
                )}
 

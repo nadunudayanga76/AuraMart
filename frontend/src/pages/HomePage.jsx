@@ -395,13 +395,13 @@ const HomePage = () => {
         <section className="container mx-auto px-4 mb-20">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
             {/* Big Deal Banner */}
-            <div className="bg-gradient-to-br from-[#fff1f4] to-[#ffe4ea] rounded-2xl p-6 sm:p-10 flex flex-col justify-center relative overflow-hidden group min-h-[300px] sm:min-h-[350px] border border-pink-100/60">
-               <div className="relative z-10 w-[70%] sm:max-w-[55%]">
-                 <span className="text-primary text-[10px] font-bold tracking-widest uppercase bg-white/80 backdrop-blur-sm px-3 py-1.5 rounded-full shadow-sm">🔥 Exclusive Offers</span>
-                 <h3 className="text-3xl sm:text-4xl font-black text-gray-900 mt-4 sm:mt-5 mb-2 sm:mb-3 leading-tight">Big Deals<br/>On Top Brands</h3>
-                 <p className="text-gray-600 text-xs sm:text-sm mb-5 sm:mb-6 font-medium leading-relaxed">Save up to 50% on premium products from your favorite brands.</p>
-                 <Link to="/shop" className="inline-flex bg-primary text-white px-5 md:px-7 py-2.5 md:py-3 rounded-xl font-bold text-xs md:text-sm items-center gap-2 hover:bg-[#e60047] transition-all shadow-lg shadow-primary/25 hover:shadow-xl hover:shadow-primary/30 hover:-translate-y-0.5 w-max">
-                   Shop Now <FiArrowRight />
+            <div className="bg-gradient-to-br from-[#fff1f4] to-[#ffe4ea] rounded-2xl p-4 md:p-10 flex flex-col justify-center relative overflow-hidden group min-h-[180px] md:min-h-[350px] border border-pink-100/60">
+               <div className="relative z-10 w-[65%] md:max-w-[55%]">
+                 <span className="text-primary text-[8px] md:text-[10px] font-bold tracking-widest uppercase bg-white/80 backdrop-blur-sm px-2 md:px-3 py-1 md:py-1.5 rounded-full shadow-sm">🔥 Exclusive</span>
+                 <h3 className="text-xl md:text-4xl font-black text-gray-900 mt-2 md:mt-5 mb-1.5 md:mb-3 leading-tight">Big Deals<br className="hidden md:block" /> On Brands</h3>
+                 <p className="text-gray-600 text-[10px] md:text-sm mb-3 md:mb-6 font-medium leading-relaxed hidden sm:block">Save up to 50% on premium products from your favorite brands.</p>
+                 <Link to="/shop" className="inline-flex bg-primary text-white px-4 md:px-7 py-2 md:py-3 rounded-lg md:rounded-xl font-bold text-[10px] md:text-sm items-center gap-1.5 hover:bg-[#e60047] transition-all shadow-lg shadow-primary/25 hover:shadow-xl hover:shadow-primary/30 hover:-translate-y-0.5 w-max">
+                   Shop Now <FiArrowRight className="w-3 h-3 md:w-4 md:h-4" />
                  </Link>
                </div>
                <div className="absolute right-0 bottom-0 top-0 w-[45%] sm:w-[50%] overflow-hidden flex items-center justify-center">
@@ -415,13 +415,13 @@ const HomePage = () => {
             </div>
 
             {/* Right Banners */}
-            <div className="grid grid-rows-2 gap-6">
-              <div className="bg-gradient-to-br from-[#eef2ff] to-[#e0e7ff] rounded-2xl p-6 sm:p-8 relative overflow-hidden flex items-center group border border-indigo-100/60 min-h-[160px] sm:min-h-0">
-                 <div className="relative z-10 w-[60%] sm:w-1/2">
-                    <span className="text-indigo-600 text-[10px] font-bold uppercase tracking-widest bg-white/70 backdrop-blur-sm px-3 py-1 rounded-full">✨ New Collection</span>
-                    <h3 className="text-xl sm:text-2xl font-black text-gray-900 mt-3 mb-3 sm:mb-4">Fashion 2026</h3>
-                    <Link to="/shop?category=Fashion" className="text-xs sm:text-sm font-bold text-gray-900 flex items-center gap-1.5 hover:text-indigo-600 transition group/link">
-                      Explore Now <FiArrowRight className="group-hover/link:translate-x-1 transition-transform" />
+            <div className="grid grid-rows-2 gap-4 md:gap-6">
+              <div className="bg-gradient-to-br from-[#eef2ff] to-[#e0e7ff] rounded-2xl p-4 md:p-8 relative overflow-hidden flex items-center group border border-indigo-100/60 min-h-[120px] md:min-h-0">
+                 <div className="relative z-10 w-[60%] md:w-1/2">
+                    <span className="text-indigo-600 text-[8px] md:text-[10px] font-bold uppercase tracking-widest bg-white/70 backdrop-blur-sm px-2 md:px-3 py-1 rounded-full">✨ New</span>
+                    <h3 className="text-base md:text-2xl font-black text-gray-900 mt-2 mb-2 md:mb-4">Fashion 2026</h3>
+                    <Link to="/shop?category=Fashion" className="text-[10px] md:text-sm font-bold text-gray-900 flex items-center gap-1 md:gap-1.5 hover:text-indigo-600 transition group/link">
+                      Explore <FiArrowRight className="group-hover/link:translate-x-1 transition-transform w-3 h-3 md:w-4 md:h-4" />
                     </Link>
                  </div>
                  <div className="absolute right-0 top-0 bottom-0 w-[50%] overflow-hidden">
@@ -433,16 +433,16 @@ const HomePage = () => {
                    <div className="absolute inset-0 bg-gradient-to-r from-[#eef2ff] via-transparent to-transparent"></div>
                  </div>
               </div>
-              <div className="grid grid-cols-2 gap-6">
-                <div className="bg-gradient-to-br from-[#f0fdf4] to-[#dcfce7] rounded-2xl p-6 relative overflow-hidden group border border-green-100/60">
+              <div className="grid grid-cols-2 gap-4 md:gap-6">
+                <div className="bg-gradient-to-br from-[#f0fdf4] to-[#dcfce7] rounded-2xl p-3 md:p-6 relative overflow-hidden group border border-green-100/60 min-h-[120px] md:min-h-0">
                    <div className="relative z-10">
-                     <span className="text-emerald-600 text-[10px] font-bold uppercase tracking-widest">Best Sellers</span>
-                     <h3 className="text-lg font-black text-gray-900 mt-1 mb-4">Top Rated Items</h3>
-                     <Link to="/shop?sort=rating" className="text-xs font-bold text-gray-900 flex items-center gap-1 hover:text-emerald-600 transition">
-                       Shop Now <FiArrowRight />
+                     <span className="text-emerald-600 text-[8px] md:text-[10px] font-bold uppercase tracking-widest">Best Sellers</span>
+                     <h3 className="text-sm md:text-lg font-black text-gray-900 mt-1 mb-2 md:mb-4">Top Rated</h3>
+                     <Link to="/shop?sort=rating" className="text-[10px] md:text-xs font-bold text-gray-900 flex items-center gap-1 hover:text-emerald-600 transition">
+                       Shop <FiArrowRight className="w-3 h-3 md:w-4 md:h-4" />
                      </Link>
                    </div>
-                   <div className="absolute -right-4 -bottom-4 w-32 h-32">
+                   <div className="absolute -right-2 -bottom-2 md:-right-4 md:-bottom-4 w-20 h-20 md:w-32 md:h-32">
                      <img 
                        src="/banner_headphones_white.png" 
                        alt="Premium Headphones" 
@@ -450,15 +450,15 @@ const HomePage = () => {
                      />
                    </div>
                 </div>
-                <div className="bg-gradient-to-br from-slate-900 via-gray-900 to-black rounded-2xl p-6 relative overflow-hidden group border border-gray-800 shadow-lg">
+                <div className="bg-gradient-to-br from-slate-900 via-gray-900 to-black rounded-2xl p-3 md:p-6 relative overflow-hidden group border border-gray-800 shadow-lg min-h-[120px] md:min-h-0">
                    <div className="relative z-10">
-                     <span className="text-blue-400 text-[10px] font-bold uppercase tracking-widest bg-blue-500/10 px-2 py-1 rounded">Smart Devices</span>
-                     <h3 className="text-lg font-black text-white mt-2 mb-4 tracking-tight">Up to 30% Off</h3>
-                     <Link to="/shop?category=Electronics" className="text-xs font-bold text-gray-300 flex items-center gap-1 hover:text-blue-400 transition">
-                       Shop Now <FiArrowRight />
+                     <span className="text-blue-400 text-[8px] md:text-[10px] font-bold uppercase tracking-widest bg-blue-500/10 px-1.5 md:px-2 py-0.5 md:py-1 rounded">Smart Devices</span>
+                     <h3 className="text-sm md:text-lg font-black text-white mt-1.5 md:mt-2 mb-2 md:mb-4 tracking-tight">30% Off</h3>
+                     <Link to="/shop?category=Electronics" className="text-[10px] md:text-xs font-bold text-gray-300 flex items-center gap-1 hover:text-blue-400 transition">
+                       Shop <FiArrowRight className="w-3 h-3 md:w-4 md:h-4" />
                      </Link>
                    </div>
-                   <div className="absolute -right-4 -bottom-4 w-32 h-32 opacity-90 group-hover:opacity-100 transition-opacity">
+                   <div className="absolute -right-2 -bottom-2 md:-right-4 md:-bottom-4 w-20 h-20 md:w-32 md:h-32 opacity-90 group-hover:opacity-100 transition-opacity">
                      <img 
                        src="/banner_smart_devices_black.png" 
                        alt="Smart Devices" 

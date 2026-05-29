@@ -247,7 +247,7 @@ const HomePage = () => {
 
               {/* Text Content */}
               <div 
-                className="w-full md:w-1/2 p-6 pt-10 sm:p-12 md:p-16 lg:p-20 flex flex-col justify-start md:justify-center relative z-10 transition-all duration-500 ease-out"
+                className="w-full md:w-1/2 px-6 pt-10 pb-16 sm:p-12 sm:pb-20 md:p-16 lg:p-20 flex flex-col justify-start md:justify-center relative z-10 transition-all duration-500 ease-out"
                 style={{
                   opacity: isTransitioning ? 0 : 1,
                   transform: isTransitioning ? 'translateY(20px)' : 'translateY(0)',

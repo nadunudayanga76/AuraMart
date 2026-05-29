@@ -425,7 +425,7 @@ const Header = () => {
 
             <div className="w-px h-8 bg-gray-200 hidden sm:block"></div>
 
-            {/* Desktop User Menu */}
+            {/* Desktop and Mobile User Menu */}
             {userInfo ? (
               <div className="hidden sm:flex items-center gap-3 relative group">
                 <div className="w-10 h-10 rounded-full bg-gray-100 border border-gray-200 overflow-hidden flex-shrink-0">
@@ -453,13 +453,11 @@ const Header = () => {
                 </div>
               </div>
             ) : (
-              <Link to="/login" className="hidden sm:flex items-center gap-2 bg-gray-900 text-white px-5 py-2.5 rounded-full hover:bg-primary hover:shadow-lg hover:shadow-primary/30 hover:-translate-y-0.5 transition-all duration-300 shadow-sm cursor-pointer">
-                <FiUser size={16} />
-                <span className="text-sm font-bold">Log In</span>
+              <Link to="/login" className="flex items-center gap-1.5 md:gap-2 bg-gray-900 text-white px-3.5 py-1.5 md:px-5 md:py-2.5 rounded-full hover:bg-primary hover:shadow-lg hover:shadow-primary/30 transition-all duration-300 shadow-sm cursor-pointer ml-1 md:ml-0">
+                <FiUser size={14} className="md:w-[16px] md:h-[16px]" />
+                <span className="text-xs md:text-sm font-bold">Log In</span>
               </Link>
             )}
-
-            {/* Mobile user avatar or login removed because it is handled by BottomNavigation */}
           </div>
         </div>
 

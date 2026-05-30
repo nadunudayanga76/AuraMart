@@ -263,6 +263,25 @@ export const updateUserBan = async (req, res) => {
   }
 };
 
+// @desc    Delete a user
+// @route   DELETE /api/users/:id
+// @access  Private/Admin
+export const deleteUser = async (req, res) => {
+  try {
+    const user = await User.findById(req.params.id);
+    if (!user) {
+      return res.status(404).json({ message: 'User not found' });
+    }
+    if (user.isAdmin) {
+      return res.status(400).json({ message: 'Cannot delete admin users' });
+    }
+    await User.findByIdAndDelete(req.params.id);
+    res.json({ message: 'User removed' });
+  } catch (error) {
+    res.status(500).json({ message: error.message });
+  }
+};
+
 // @desc    Get user wishlist
 // @route   GET /api/users/wishlist
 // @access  Private

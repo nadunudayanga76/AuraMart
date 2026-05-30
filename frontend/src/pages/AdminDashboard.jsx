@@ -253,6 +253,18 @@ const AdminDashboard = () => {
     }
   };
 
+  const handleDeleteUser = async (userId) => {
+    if (window.confirm('Are you sure you want to delete this user? This action cannot be undone.')) {
+      try {
+        const config = { headers: { Authorization: `Bearer ${userInfo.token}` } };
+        await axios.delete(`${import.meta.env.VITE_API_URL || 'http://localhost:5000'}/api/users/${userId}`, config);
+        setUsers(users.filter(u => u._id !== userId));
+      } catch (error) {
+        alert(error.response?.data?.message || 'Failed to delete user');
+      }
+    }
+  };
+
   const handleDeleteCategory = async (id) => {
     if (window.confirm('Are you sure you want to delete this category?')) {
       try {
@@ -1962,7 +1974,11 @@ const AdminDashboard = () => {
                                 )}
                               </td>
                               <td className="py-4">
-                                {user.isBanned ? (
+                                {!user.isVerified ? (
+                                  <span className="inline-flex items-center gap-1 px-2.5 py-1 bg-yellow-100 text-yellow-700 rounded-full text-xs font-bold">
+                                    <FiAlertTriangle size={12} /> Unverified
+                                  </span>
+                                ) : user.isBanned ? (
                                   <span className="inline-flex items-center gap-1 px-2.5 py-1 bg-red-100 text-red-700 rounded-full text-xs font-bold">
                                     <FiSlash size={12} /> Banned
                                   </span>
@@ -1979,23 +1995,31 @@ const AdminDashboard = () => {
                                 {user.isAdmin ? (
                                   <span className="text-xs text-gray-400 italic">Protected</span>
                                 ) : (
-                                  <button
-                                    onClick={() => handleBanToggle(user._id, user.isBanned)}
-                                    disabled={banLoading === user._id}
-                                    className={`inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-bold transition cursor-pointer ${
-                                      user.isBanned
-                                        ? 'bg-green-500 hover:bg-green-600 text-white'
-                                        : 'bg-red-500 hover:bg-red-600 text-white'
-                                    } disabled:opacity-50`}
-                                  >
-                                    {banLoading === user._id ? (
-                                      <span className="animate-spin rounded-full h-3 w-3 border-b-2 border-white"></span>
-                                    ) : user.isBanned ? (
-                                      <><FiCheckCircle size={13} /> Unban</>
-                                    ) : (
-                                      <><FiSlash size={13} /> Ban</>
-                                    )}
-                                  </button>
+                                  <div className="flex justify-center gap-2">
+                                    <button
+                                      onClick={() => handleBanToggle(user._id, user.isBanned)}
+                                      disabled={banLoading === user._id}
+                                      className={`inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-bold transition cursor-pointer ${
+                                        user.isBanned
+                                          ? 'bg-green-500 hover:bg-green-600 text-white'
+                                          : 'bg-orange-500 hover:bg-orange-600 text-white'
+                                      } disabled:opacity-50`}
+                                    >
+                                      {banLoading === user._id ? (
+                                        <span className="animate-spin rounded-full h-3 w-3 border-b-2 border-white"></span>
+                                      ) : user.isBanned ? (
+                                        <><FiCheckCircle size={13} /> Unban</>
+                                      ) : (
+                                        <><FiSlash size={13} /> Ban</>
+                                      )}
+                                    </button>
+                                    <button
+                                      onClick={() => handleDeleteUser(user._id)}
+                                      className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-bold transition cursor-pointer bg-red-500 hover:bg-red-600 text-white"
+                                    >
+                                      <FiTrash2 size={13} /> Delete
+                                    </button>
+                                  </div>
                                 )}
                               </td>
                             </tr>
